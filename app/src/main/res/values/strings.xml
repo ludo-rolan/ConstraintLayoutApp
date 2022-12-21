@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Constraint Layout App</string>
+    <string name="counter">Counter</string>
+    <string name="number">0</string>
+    <string name="reset">reset</string>
+    <string name="next">next</string>
 </resources>
