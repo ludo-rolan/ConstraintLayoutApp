@@ -11,6 +11,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,10 +30,29 @@ public class MainActivity extends Activity {
         imagesList.add(R.drawable.wordpress_logo);
     }
 
+//    permet de sauvegarder des données en cas de changement d'activité
+    @Override
+    protected void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putInt("counter", counter);
+        super.onSaveInstanceState(outState);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        sauvegarde des données en cas de changement d'activité sinon commence une nouvelle activité
+        if (savedInstanceState != null) {
+
+            int value = savedInstanceState.getInt("MY_FIELD");
+
+            // ... update your views
+
+
+        } else {
+            // no previous state, start fresh
+        }
 
         Button resetButton = (Button) findViewById(R.id.reset_button);
         TextView counterTextView = (TextView) findViewById(R.id.counter);
@@ -87,6 +108,18 @@ public class MainActivity extends Activity {
         checkBoxProfiter.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) checkBoxProfiter.setText("Vous profitez !");
             else checkBoxProfiter.setText("Profiter");
+        });
+
+
+
+        Button nextButton = (Button) findViewById(R.id.next_button);
+
+//        click event on nextButton
+        nextButton.setOnClickListener(view -> {
+            //        se diriger vers une autre activité
+            Intent nextActivity = new Intent(this, NextActivity.class);
+            nextActivity.putExtra("counter", counter);
+            startActivityForResult(nextActivity, 1);
         });
 
     }

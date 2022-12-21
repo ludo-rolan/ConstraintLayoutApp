@@ -4,4 +4,6 @@
     <string name="number">0</string>
     <string name="reset">reset</string>
     <string name="next">next</string>
+    <string name="next_counter" />
+    <string name="back">back</string>
 </resources>
